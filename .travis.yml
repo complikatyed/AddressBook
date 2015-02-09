@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - npm install -g npm
+  - npm install -g bower
+  - bower install
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+script:
+  - npm run test -- karma.conf-ci.js
+
+after_script:
+  - cat ./coverage/PhantomJS*/lcov.info | ./node_modules/codeclimate-test-reporter/bin/codeclimate.js
+env:
+  global:
+    - secure: QrQ7ITfU6SC0uVk3r1xgOgswvTYX3wZtvWeXnE2t7QstzivJM9C91DOmp+Wbgr8k6RNwBDZMhzZJcWkzwvbfOfU0i0i4Lw7L/gfWVPKFoVWpyqCOyTIfsblMtBcLEgCbJ++cEms+tDl2hbz95iWuC608XPvFC+TrrcsVFudStok=
+    - secure: ZMKSo+0SQ0lxlSOw07nKfj3+CLM00z8E4hJngCLCYe+mSaGYhSmEQMWoYouICxwfCOtWLFHjwKC+syrICbFyM/KAATlls3q0ouS4WqiDopp59fXp8GbYwL2aCIxFVD45msvztH27idszEAGeHIqjpZEm/1Ol7nPnWQVfROsO0Ic=
+    - secure: FhVXcI+tCgz/hit3xjvw2YwmRC46ymUlGS8c36B47GJvKROgb99B51VuayKb1aG0emtgG4fXrHoeqknFy686z04HtDdMd5z+Wsr84efWqrOOSY4mDk57EmKhVITUKUfk1Na/k5MD7RpNtcSj6an/3FCIjYGud4pl6GNu42HrKAU=
+    - secure: QLcFc1PURlwKkIk0+SSOEoli2DTi2Hd0ZddH8dYbBflrfeI2cmfX9Pl0NnpoIsmTn91zeRFmfyoQIgk4x4M/fYlDQIxH/YKo08l24mCtp1OVp5grj2Qh+AOMAORa+920ysWBSSgr2WJedHgF6zE239/lCC48XL7xKNoHZAB1Y9Q=
+
