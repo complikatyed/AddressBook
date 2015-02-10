@@ -17,8 +17,20 @@ var $form = $('form');
 $form.submit(function(evt) {
   evt.preventDefault();
 
-  var $firstName = $('input[name="firstName"]');
-  $firstName.val('');
+  var $firstName   = $('input[name="firstName"]'),
+      $lastName    = $('input[name="lastName"]'),
+      $nickName    = $('input[name="nickName"]'),
+      $phoneNumber = $('input[name="phoneNumber"]'),
+      $email       = $('input[name="email"]'),
+      $twitter     = $('input[name="twitter"]'),
+      $photoUrl    = $('input[name="photoURL"]'),
+      firstName    = $firstName.val(),
+      lastName     = $lastName.val(),
+      nickName     = $nickName.val(),
+      phoneNumber  = $phoneNumber.val(),
+      email        = $email.val(),
+      twitter      = $twitter.val(),
+      photoUrl     = $photoUrl.val();
 
 
 });

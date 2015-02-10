@@ -15,19 +15,20 @@
 
         <!-- Button that will make the add new person form appear -->
        <a href="#" class="button radius">Add Somebody</a>
+       <br>
+       <br>
 
         <!-- Right here we need a form that appears when needed -->
         <!-- The form needs a submit button that disappears it -->
 <!-- Simple form which will send a POST request -->
-       <form action="#" method="post">
-         <input type="text" name="firstName" value="First Name" required>
-         <input type="text" name="lastName" value="Last Name" required>
+       <form action="https://groovyaddressapp.firebaseio.com/Contacts.json" method="POST">
+         <input type="text" name="firstName" value="First Name">
+         <input type="text" name="lastName" value="Last Name">
          <input type="text" name="nickName" value="Nickname">
-         <input type="tel" name="cellNumber" value="Cell Number" required>
-         <input type="tel" name="homeNumber" value="Home Number">
-         <input type="email" name="email" value="Email" required>
+        <input type="tel" name="phoneNumber" value="Phone Number">
+         <input type="email" name="email" value="Email">
          <input type="twitter" name="twitter" value="Twitter Handle">
-         <input type="url" name="photoURL" value="Picture Link">
+         <input type="url" name="photoUrl" value="Picture Link">
          <input type="submit" value="New Contact">
         </form>
 
