@@ -1,0 +1,25 @@
+body {
+  background-color: steelblue;
+}
+
+th, td {
+  text-align: center;
+}
+
+table {
+ margin-top: 10px;
+ text-align: center;
+}
+
+p {
+  color: white;
+  font-size: 1.25em;
+}
+
+.container {
+  text-align: center;
+}
+
+.remove {
+  margin-top: 7px;
+}

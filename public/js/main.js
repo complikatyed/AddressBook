@@ -30,8 +30,8 @@ function retrieveContactData() {
   $.getJSON(myUrl, getContacts);
 }
 
-function getContacts(data) {
-  var contact = new Contact(data);
+function getContacts(res) {
+  var contact = new Contact(res);
   createTableData(contact);
 
   function createTableData(contact) {
