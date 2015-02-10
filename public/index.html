@@ -8,36 +8,30 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
-
     <div class="container">
-      <h1>Everyone I Know App</h1>
-
-
-        <!-- Button that will make the add new person form appear -->
-       <a href="#" class="button radius">Add Somebody</a>
-       <br>
-       <br>
-
-        <!-- Right here we need a form that appears when needed -->
-        <!-- The form needs a submit button that disappears it -->
-<!-- Simple form which will send a POST request -->
-       <form action="https://groovyaddressapp.firebaseio.com/Contacts.json" method="POST">
-         <input type="text" name="firstName" value="First Name">
-         <input type="text" name="lastName" value="Last Name">
-         <input type="text" name="nickName" value="Nickname">
-        <input type="tel" name="phoneNumber" value="Phone Number">
-         <input type="email" name="email" value="Email">
-         <input type="twitter" name="twitter" value="Twitter Handle">
-         <input type="url" name="photoUrl" value="Picture Link">
-         <input type="submit" value="New Contact">
+      <div>
+        <h1>Everyone I Know App</h1>
+        <form class="form-inline" action="#">
+          <input type="text" id="contactName" placeholder="Name">
+          <input type="tel" id="phoneNumber" placeholder="Phone Number">
+          <input type="email" id="email" placeholder="Email">
+          <input type="text" id="twitter" placeholder="Twitter Handle">
+          <input type="url" id="photoUrl" placeholder="Picture Link">
+          <button id="addNew">Add Contact</button>
         </form>
-
-        <!-- Here we'll need a new div for each new friend BUT... -->
-        <!-- I want to use the "make div" append approach from the movie div project -->
-
-
+        <div>
+          <table id="table">
+            <th>Contact</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Twitter Handle</th>
+            <th>Picture</th>
+            <th>Remove?</th>
+          </table>
+        </div>
+      </div>
     </div>
-
-    <script src="js/main.js"></script>
-  </body>
+  <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+  <script src="main.js"></script>
+</body>
 </html>

@@ -9,46 +9,58 @@ function hello() {
 
 
 // Above is some space for tests.  Down here is the actual JS code...
-//
-//Make the form appear on 'add new contact' click
-
-var $form = $('form');
-
-$form.submit(function(evt) {
-  evt.preventDefault();
-
-  var $firstName   = $('input[name="firstName"]'),
-      $lastName    = $('input[name="lastName"]'),
-      $nickName    = $('input[name="nickName"]'),
-      $phoneNumber = $('input[name="phoneNumber"]'),
-      $email       = $('input[name="email"]'),
-      $twitter     = $('input[name="twitter"]'),
-      $photoUrl    = $('input[name="photoURL"]'),
-      firstName    = $firstName.val(),
-      lastName     = $lastName.val(),
-      nickName     = $nickName.val(),
-      phoneNumber  = $phoneNumber.val(),
-      email        = $email.val(),
-      twitter      = $twitter.val(),
-      photoUrl     = $photoUrl.val();
 
 
+var myUrl = 'https://groovyaddressapp.firebaseio.com/Contacts.json',
+    $tr = $('<tr></tr>'),
+    $form = $('form'),
+    $tbody = $('tbody');
+
+$('#addNew').on('click', function() {
+  event.preventDefault();
+  retrieveContactData();
 });
 
 
+$('#table').on('click', '.remove', function() {
+  var $tr = $(this).closes("tr");
+  $tr.remove();
+});
 
-// POST form data to firebase
-//
-// Add data to contact list in firebase
-//
-// Make the form disappear
-//
-// getJSON call for the information
-//
-// Create divs for each contact
-//
-// Append contact data to the new divs
-//
-// Remove contact button goes with each div
-//
-// Contact info gets removed from both page and database on click
+function retrieveContactData() {
+  $.get(myUrl, getContacts);
+}
+
+function getContacts(data) {
+  var contact = new Contact(data);
+  createTableData(contact);
+
+  function createTableData(contact) {
+    $tr;
+    var $tdName = $('<td>' + contact.contactName + '</td>');
+    $tr.append($tdName);
+    var $tdPhone = $('<td>' + contact.phoneNumber + '</td>');
+    $tr.append($tdPhone);
+    var $tdEmail = $('<td>' + contact.email + '</td>');
+    $tr.append($tdEmail);
+    var $tdTwitter = $('<td>' + contact.twitter + '</td>');
+    $tr.append($tdTwitter);
+    var $tdPicture = $('<td>' + contact.photoUrl + '</td>');
+    $tr.append($tdPicture);
+    var $tdButton = $('<button class="remove">Remove</button>');
+    $tr.append($tdButton);
+    $('#table').append($tr);
+
+    jsonifiedData = JSON.stringify(contact);
+    $.post(myUrl, jsonifiedData);
+  }
+}
+
+function Contact(obj) {
+   this.contactName = obj.contactName;
+   this.phoneNumber = obj.phoneNumber;
+   this.email = obj.email;
+   this.twitter = obj.twitter;
+   this.photoUrl = obj.photoUrl;
+}
+
