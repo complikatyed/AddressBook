@@ -20,11 +20,8 @@ $('#addNew').on('click', function() {
   retrieveContactData();
 });
 
+// I think the problem is the circularity.  I don't have anything in the data to grab, so it's looping.
 
-$('#table').on('click', '.remove', function() {
-  var $tr = $(this).closest("tr");
-  $tr.remove();
-});
 
 function retrieveContactData() {
   $.getJSON(myUrl, getContacts);
