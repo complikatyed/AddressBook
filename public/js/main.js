@@ -1,62 +1,78 @@
 /* jshint jquery: true */
 
+'use strict';
 
 function hello() {
   return 'world';
 }
 
 
-
-
 // Above is some space for tests.  Down here is the actual JS code...
 
 
-var myUrl = 'https://groovyaddressapp.firebaseio.com/contacts.json',
-    $tr = $('<tr></tr>');
+var FIREBASE_URL   = 'https://groovyaddressapp.firebaseio.com/contacts.json',
+    $form          = $('contacts-form'), // This is the main "getting information" form
+    $newContact    = $('.newContact'),   // This is the button at the top (that reveals the contact form).
+    $addContact    = $('.addContact'),   // This is the button IN the form that submits the contact info.
+    $removeContact = $('.remove');       // This is the button that will remove a contact (from DB and screen list).
 
 
-$('#addNew').on('click', function() {
-  event.preventDefault();
-  retrieveContactData();
+//Part that makes the "add a new friend" form visible
+
+$(document).ready(function () {
+  $newContact.click(function () {   // Click the "New Contact" button so form will show
+    $form.show();                   // Show the form.
+    $addContact.show();             // Not sure what this is doing...
+    $newContact.hide();             // Now the "New Contact" button goes away
+  });
+
+  $addContact.click(getContact);    // Calls the "Get Contact" function (defined below)
+  removeContact();                  // Calls the "Remove Contact" function (which is defined below)
 });
 
-// I think the problem is the circularity.  I don't have anything in the data to grab, so it's looping.
+$.get(FIREBASE_URL, function(data) {           // Sending a call to the firebase for data
+  Object.keys(data).forEach(function(uuid) {   // For each item in the firebase, get the data (use the uuid to identify them)
+    createContactTable(uuid, data[uuid]);       // Add the data to the table, using the uuid to identify the info in the table.
+    console.log(uuid);                        // Confirming that the uuid is showing up
+  });
+});
 
-
-function retrieveContactData() {
-  $.getJSON(myUrl, getContacts);
+function createContactTable(uuid, contact) {    // Declaring a function that will use the uuid and contact to create a table.
+    var $tr = $('<tr><<td class="name">' + contact.contactName +
+                '</td><td class="phone">' + contact.phoneNumber +
+                '</td><td class="email">' + contact.email +
+                '</td><td class="twitter">' + contact.twitter +
+                '</td><td class="image"><img class="image" src="' + contact.photo +
+                '"></td><td><button class="remove">Remove</button></td></tr>');
+    $tr.attr('data-uuid', uuid);
+    $('.target').append($tr);
 }
 
-function getContacts(res) {
-  var contact = new Contact(res);
-  createTableData(contact);
+function getContact(event) {
+  event.preventDefault();
 
-  function createTableData(contact) {
-    $tr;
-    var $tdName = $('<td>' + contact.contactName + '</td>');
-    $tr.append($tdName);
-    var $tdPhone = $('<td>' + contact.phoneNumber + '</td>');
-    $tr.append($tdPhone);
-    var $tdEmail = $('<td>' + contact.email + '</td>');
-    $tr.append($tdEmail);
-    var $tdTwitter = $('<td>' + contact.twitter + '</td>');
-    $tr.append($tdTwitter);
-    var $tdPicture = $('<td>' + contact.photoUrl + '</td>');
-    $tr.append($tdPicture);
-    var $tdButton = $('<button class="remove">Remove</button>');
-    $tr.append($tdButton);
-    $('#table').append($tr);
+  var $name    = $('.contactName').val(),
+      $phone   = $('.phoneNumber').val(),
+      $email   = $('.email').val(),
+      $twitter = $('.twitter').val(),
+      $photo   = $('.photoUrl').val();
 
-    jsonifiedData = JSON.stringify(contact);
-    $.post(myUrl, jsonifiedData);
-  }
+  var contact = {name: $name, phone: $phone, email: $email, twitter: $twitter, photo: $photo};
+  var data = JSON.stringify(contact);
+  $.post(FIREBASE_URL, data, function(res){
+    createContactTable(uuid, contact);
+  });
+  $form.hide();
+  $addContact.hide();
+  $newContact.show();
 }
 
-function Contact(obj) {
-   this.contactName = obj.contactName;
-   this.phoneNumber = obj.phoneNumber;
-   this.email = obj.email;
-   this.twitter = obj.twitter;
-   this.photoUrl = obj.photoUrl;
+function removeContact() {
+  $('tbody').on('click', $removeContact, function(evt){
+    var $tr = $(evt.target).closest('tr');
+    $tr.remove();
+    var uuid = $tr.data('uuid');
+    var url = 'https://groovyaddressapp.firebaseio.com/contacts/' + uuid + '.json';
+    $.ajax(url, {type: "DELETE"});
+  });
 }
-
