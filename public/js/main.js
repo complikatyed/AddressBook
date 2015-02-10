@@ -1,5 +1,5 @@
 /* jshint jquery: true */
-'use strict'
+
 
 function hello() {
   return 'world';
@@ -11,10 +11,9 @@ function hello() {
 // Above is some space for tests.  Down here is the actual JS code...
 
 
-var myUrl = 'https://groovyaddressapp.firebaseio.com/Contacts.json',
-    $tr = $('<tr></tr>'),
-    $form = $('form'),
-    $tbody = $('tbody');
+var myUrl = 'https://groovyaddressapp.firebaseio.com/contacts.json',
+    $tr = $('<tr></tr>');
+
 
 $('#addNew').on('click', function() {
   event.preventDefault();
@@ -23,12 +22,12 @@ $('#addNew').on('click', function() {
 
 
 $('#table').on('click', '.remove', function() {
-  var $tr = $(this).closes("tr");
+  var $tr = $(this).closest("tr");
   $tr.remove();
 });
 
 function retrieveContactData() {
-  $.get(myUrl, getContacts);
+  $.getJSON(myUrl, getContacts);
 }
 
 function getContacts(data) {
