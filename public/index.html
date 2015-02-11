@@ -17,24 +17,18 @@
         </div>
 
         <form class="contacts-form" action="https://groovyaddressapp.firebaseio.com/contacts.json" method="POST">
-          <input type="text" class="contactName" placeholder="Name">
-          <input type="tel" class="phoneNumber" placeholder="Phone Number">
+          <input type="text" class="name" placeholder="Name">
+          <input type="tel" class="phone" placeholder="Phone Number">
           <input type="email" class="email" placeholder="Email">
           <input type="text" class="twitter" placeholder="Twitter Handle">
-          <input type="url" class="photoUrl" placeholder="Picture Link">
+          <input type="url" class="photo" placeholder="Picture Link">
           <input id="submit" class="button addContact" value="Add Contact">
         </form>
         <div>
           <table id="table">
+          <caption>My Fabulous Friends</caption>
             <thead>
-              <tr>
-                <th></th>
-                <th>Contact</th>
-                <th>Phone Number</th>
-                <th>Email</th>
-                <th>Twitter Handle</th>
-                <th></th>
-              </thead>
+            </thead>
               <tbody class="target">
               </tbody>
             </table>

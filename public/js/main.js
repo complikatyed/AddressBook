@@ -33,13 +33,12 @@ $(document).ready(function () {
 $.get(FIREBASE_URL, function(data) {           // Sending a call to the firebase for data
   Object.keys(data).forEach(function(uuid) {   // For each item in the firebase, get the data (use the uuid to identify them)
     createContactTable(uuid, data[uuid]);       // Add the data to the table, using the uuid to identify the info in the table.
-    console.log(uuid);                        // Confirming that the uuid is showing up
   });
 });
 
 function createContactTable(uuid, contact) {    // Declaring a function that will use the uuid and contact to create a table.
-    var $tr = $('<tr><<td class="name">' + contact.contactName +
-                '</td><td class="phone">' + contact.phoneNumber +
+    var $tr = $('<tr><<td class="name">' + contact.name +
+                '</td><td class="phone">' + contact.phone +
                 '</td><td class="email">' + contact.email +
                 '</td><td class="twitter">' + contact.twitter +
                 '</td><td class="image"><img class="image" src="' + contact.photo +
