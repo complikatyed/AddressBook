@@ -75,9 +75,3 @@ function removeContact() {
     $.ajax(url, {type: "DELETE"});
   });
 }
-
-
-// HERE'S WHERE I'M TRYING OUT MY OWN NEW STUFF
-//
-
-

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Groovy Contacts App</title>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <div>
+          <form>
+            <input class="button newContact" value="New Contact">
+          </form>
+        </div>
+
+        <form class="contacts-form" action="https://groovyaddressapp.firebaseio.com/contacts.json" method="POST">
+          <input type="text" class="name" placeholder="Name">
+          <input type="tel" class="phone" placeholder="Phone Number">
+          <input type="email" class="email" placeholder="Email">
+          <input type="text" class="twitter" placeholder="Twitter Handle">
+          <input type="url" class="photo" placeholder="Picture Link">
+          <input id="submit" class="button addContact" value="Add Contact">
+        </form>
+        <div>
+          <table id="table">
+          <caption>My Fabulous Friends</caption>
+            <thead>
+            </thead>
+              <tbody class="target">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
+    <script src="../bower_components/lodash/lodash.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

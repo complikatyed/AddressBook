@@ -5,36 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Groovy Contacts App</title>
+    <link rel="stylesheet" href="../bower_components/foundation/css/foundation.css">
     <link rel="stylesheet" href="/css/main.css">
   </head>
-  <body>
-    <div class="container">
-      <div>
-        <div>
-          <form>
-            <input class="button newContact" value="New Contact">
-          </form>
-        </div>
+    <body>
+      <div class="row">
+        <div class="large-12 columns">
+          <h1><a class="userName" href="#">Top Bar Title</a></h1>
 
-        <form class="contacts-form" action="https://groovyaddressapp.firebaseio.com/contacts.json" method="POST">
-          <input type="text" class="name" placeholder="Name">
-          <input type="tel" class="phone" placeholder="Phone Number">
-          <input type="email" class="email" placeholder="Email">
-          <input type="text" class="twitter" placeholder="Twitter Handle">
-          <input type="url" class="photo" placeholder="Picture Link">
-          <input id="submit" class="button addContact" value="Add Contact">
-        </form>
-        <div>
-          <table id="table">
-          <caption>My Fabulous Friends</caption>
-            <thead>
-            </thead>
-              <tbody class="target">
-              </tbody>
-            </table>
+          <a role="button" href="#" class="small radius button">Round Button</a>
           </div>
         </div>
-      </div>
+
+        <br>
+
+        <div class="row">
+          <div class="large-12 columns">
+            <div class="row">
+
+              <div class="large-2 small-3 columns">
+                <img src="http://placehold.it/250x250&text=Thumbnail"/>
+                <h4 class="panel" id="name"></h4>
+                <h6 class="panel" id="email"></h6>
+                <h6 class="panel" id="phone"></h6>
+                <h6 class="panel" id="twitter"></h6>
+              </div>
+
+              <div class="large-2 small-3 columns">
+                <img src="http://placehold.it/250x250&text=Thumbnail"/>
+                <h4 class="panel" id="name"></h4>
+                <h6 class="panel" id="email"></h6>
+                <h6 class="panel" id="phone"></h6>
+                <h6 class="panel" id="twitter"></h6>
+              </div>
+
+              <div class="large-2 small-3 columns">
+                <img src="http://placehold.it/250x250&text=Thumbnail"/>
+                <h4 class="panel" id="name"></h4>
+                <h6 class="panel" id="email"></h6>
+                <h6 class="panel" id="phone"></h6>
+                <h6 class="panel" id="twitter"></h6>
+              </div>
+             
+              <div class="large-2 small-3 columns">
+                <img src="http://placehold.it/250x250&text=Thumbnail"/>
+                <h4 class="panel" id="name"></h4>
+                <h6 class="panel" id="email"></h6>
+                <h6 class="panel" id="phone"></h6>
+                <h6 class="panel" id="twitter"></h6>
+              </div>
+             
+              <div class="large-2 small-3 columns">
+                <img src="http://placehold.it/250x250&text=Thumbnail"/>
+                <h4 class="panel" id="name"></h4>
+                <h6 class="panel" id="email"></h6>
+                <h6 class="panel" id="phone"></h6>
+                <h6 class="panel" id="twitter"></h6>
+              </div>
+            
+              <div class="large-2 small-3 columns">
+                <img src="http://placehold.it/250x250&text=Thumbnail"/>
+                <h4 class="panel" id="name"></h4>
+                <h6 class="panel" id="email"></h6>
+                <h6 class="panel" id="phone"></h6>
+                <h6 class="panel" id="twitter"></h6>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <footer class="row">
+          <div class="large-12 columns">
+            <hr>
+            <div class="row">
+              <div class="large-6 columns">
+                <p>©2015 Katye McCullough Russell</p>
+              </div>
+            </div>
+          </div>
+        </footer>
     <script src="//cdn.jsdelivr.net/jquery/2.1.3/jquery.min.js"></script>
     <script src="../bower_components/lodash/lodash.min.js"></script>
     <script src="js/main.js"></script>
